@@ -9,8 +9,8 @@ internal static class MultiscaleRetinexSettings
     public const float MaximumLocalScale = 0.5f;
     public const float MinimumGlobalScale = 0.01f;
     public const float MaximumGlobalScale = 2f;
-    public const float MinimumGain = 0.25f;
-    public const float MaximumGain = 4f;
+    public const float MinimumGain = 0.1f;
+    public const float MaximumGain = 1.5f;
     public const float MaximumBrightnessOffset = 0.5f;
     public const float GaussianRadiusFactor = 3f;
     public const int MaximumKernelRadius = 64;
