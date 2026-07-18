@@ -41,7 +41,7 @@ public sealed class MultiscaleRetinexEffect : VideoEffectBase
 
     [Display(GroupName = nameof(Texts.AdjustGroup), Name = nameof(Texts.Contrast), Description = nameof(Texts.ContrastDescription), Order = 20, ResourceType = typeof(Texts))]
     [AnimationSlider("F1", "%", 0, 100)]
-    public Animation Contrast { get; } = new Animation(40, 0, 100);
+    public Animation Contrast { get; } = new Animation(30, 0, 100);
 
     [Display(GroupName = nameof(Texts.AdjustGroup), Name = nameof(Texts.Brightness), Description = nameof(Texts.BrightnessDescription), Order = 21, ResourceType = typeof(Texts))]
     [AnimationSlider("F1", "%", -100, 100)]

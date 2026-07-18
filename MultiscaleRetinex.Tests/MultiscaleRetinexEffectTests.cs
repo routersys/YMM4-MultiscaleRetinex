@@ -32,7 +32,7 @@ public sealed class MultiscaleRetinexEffectTests
         Assert.Equal(100d, ValueAt(effect.Amount), 6);
         Assert.Equal(3d, ValueAt(effect.LocalScale), 6);
         Assert.Equal(49d, ValueAt(effect.GlobalScale), 6);
-        Assert.Equal(40d, ValueAt(effect.Contrast), 6);
+        Assert.Equal(30d, ValueAt(effect.Contrast), 6);
         Assert.Equal(0d, ValueAt(effect.Brightness), 6);
         Assert.Equal(100d, ValueAt(effect.ColorRestoration), 6);
         Assert.Equal(MultiscaleRetinexQuality.High, effect.Quality);
