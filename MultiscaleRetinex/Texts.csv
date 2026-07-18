@@ -1,5 +1,5 @@
 Key,Parameter,ja-jp,en-us,zh-cn,zh-tw,ko-kr,es-es,ar-sa,id-id
-MultiscaleRetinex,,マルチスケールレティネックス,Multiscale Retinex,多尺度Retinex,多尺度Retinex,멀티스케일 레티넥스,Retinex multiescala,ريتينكس متعدد المقاييس,Retinex Multiskala
+MultiscaleRetinex,,局所トーン,Local Tone,局部色调,局部色調,로컬 톤,Tono local,الدرجة اللونية المحلية,Tona Lokal
 BasicGroup,,基本,Basic,基本,基本,기본,Básico,أساسي,Dasar
 ScaleGroup,,スケール,Scale,尺度,尺度,스케일,Escala,المقياس,Skala
 AdjustGroup,,調整,Adjustment,调整,調整,조정,Ajuste,الضبط,Penyesuaian
