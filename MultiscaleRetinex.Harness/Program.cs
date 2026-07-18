@@ -21,14 +21,14 @@ if (args.Contains("--golden"))
 {
     var goldenCases = new (string Name, MultiscaleRetinexPipeline.Parameters Parameters)[]
     {
-        ("balanced-default", new(MultiscaleRetinexQuality.Balanced, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 1f)),
-        ("high-default", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 1f)),
-        ("ultra-default", new(MultiscaleRetinexQuality.Ultra, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 1f)),
-        ("chromaticity", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.Chromaticity, 0.03f, 0.49f, 0.4f, 0f, 1f)),
+        ("balanced-default", new(MultiscaleRetinexQuality.Balanced, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f)),
+        ("high-default", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f)),
+        ("ultra-default", new(MultiscaleRetinexQuality.Ultra, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f)),
+        ("chromaticity", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.Chromaticity, 0.03f, 0.49f, 0.3f, 0f, 1f)),
         ("contrast-max", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 1f, 0f, 1f)),
-        ("restoration-zero", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 0f)),
+        ("restoration-zero", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 0f)),
         ("narrow-scales", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.005f, 0.1f, 0.4f, 0f, 1f)),
-        ("brightness-plus", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0.5f, 1f)),
+        ("brightness-plus", new(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0.5f, 1f)),
     };
     foreach (var (name, goldenParameters) in goldenCases)
     {
@@ -43,7 +43,7 @@ if (args.Contains("--golden"))
 
 foreach (var quality in new[] { MultiscaleRetinexQuality.Balanced, MultiscaleRetinexQuality.High, MultiscaleRetinexQuality.Ultra })
 {
-    var parameters = new MultiscaleRetinexPipeline.Parameters(quality, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 1f);
+    var parameters = new MultiscaleRetinexPipeline.Parameters(quality, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f);
     pipeline.Process(source, destination, width, height, in parameters);
     pipeline.Process(source, destination, width, height, in parameters);
     var stopwatch = Stopwatch.StartNew();
@@ -61,7 +61,7 @@ foreach (var quality in new[] { MultiscaleRetinexQuality.Balanced, MultiscaleRet
     for (var index = 0; index < source.Length; index++)
         pixels[index].PackedValue = unchecked((uint)source[index]);
     sourceTexture.CopyFrom(pixels);
-    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, 1f);
+    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f);
 
     pipeline.Simulate(sourceTexture, width, height, in parameters);
     var stopwatch = Stopwatch.StartNew();
@@ -105,7 +105,7 @@ foreach (var contrast in new[] { 0f, 0.25f, 0.5f, 0.75f, 1f })
 
 foreach (var restoration in new[] { 0f, 0.5f, 1f })
 {
-    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.4f, 0f, restoration);
+    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, restoration);
     pipeline.Process(source, destination, width, height, in parameters);
     Console.WriteLine($"restoration={restoration:F2}");
     WriteBmp(Path.Combine(outputDirectory, $"restoration{(int)(restoration * 100):D3}.bmp"), destination, width, height);
@@ -113,7 +113,7 @@ foreach (var restoration in new[] { 0f, 0.5f, 1f })
 
 foreach (var mode in new[] { MultiscaleRetinexMode.ColorConstancy, MultiscaleRetinexMode.Chromaticity })
 {
-    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, mode, 0.03f, 0.49f, 0.4f, 0f, 1f);
+    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, mode, 0.03f, 0.49f, 0.3f, 0f, 1f);
     pipeline.Process(source, destination, width, height, in parameters);
     Console.WriteLine($"mode={mode}");
     WriteBmp(Path.Combine(outputDirectory, $"mode-{mode}.bmp".ToLowerInvariant()), destination, width, height);
@@ -121,7 +121,7 @@ foreach (var mode in new[] { MultiscaleRetinexMode.ColorConstancy, MultiscaleRet
 
 foreach (var globalScale in new[] { 0.1f, 0.49f, 1f })
 {
-    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, globalScale, 0.4f, 0f, 1f);
+    var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, globalScale, 0.3f, 0f, 1f);
     pipeline.Process(source, destination, width, height, in parameters);
     Console.WriteLine($"globalScale={globalScale:F2}");
     WriteBmp(Path.Combine(outputDirectory, $"scale{(int)(globalScale * 100):D3}.bmp"), destination, width, height);
