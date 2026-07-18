@@ -1,0 +1,35 @@
+Key,Parameter,ja-jp,en-us,zh-cn,zh-tw,ko-kr,es-es,ar-sa,id-id
+MultiscaleRetinex,,マルチスケールレティネックス,Multiscale Retinex,多尺度Retinex,多尺度Retinex,멀티스케일 레티넥스,Retinex multiescala,ريتينكس متعدد المقاييس,Retinex Multiskala
+BasicGroup,,基本,Basic,基本,基本,기본,Básico,أساسي,Dasar
+ScaleGroup,,スケール,Scale,尺度,尺度,스케일,Escala,المقياس,Skala
+AdjustGroup,,調整,Adjustment,调整,調整,조정,Ajuste,الضبط,Penyesuaian
+Amount,,強さ,Amount,强度,強度,강도,Intensidad,الشدة,Intensitas
+AmountDescription,,補正の合成量です,Blend amount of the correction over the source,校正与源图像的混合量,校正與源圖像的混合量,보정의 합성량입니다,Cantidad de mezcla de la corrección sobre la imagen,مقدار مزج التصحيح فوق الصورة,Jumlah pencampuran koreksi di atas citra
+Quality,,品質,Quality,品质,品質,품질,Calidad,الجودة,Kualitas
+QualityDescription,,サラウンドのスケール数と計算精度を選びます,Selects the number of surround scales and the precision,选择环绕尺度数与计算精度,選擇環繞尺度數與計算精度,서라운드 스케일 수와 계산 정밀도를 선택합니다,Selecciona el número de escalas del entorno y la precisión,يحدد عدد مقاييس المحيط ودقة الحساب,Memilih jumlah skala surround dan presisi perhitungan
+Mode,,処理モード,Mode,处理模式,處理模式,처리 모드,Modo,وضع المعالجة,Mode
+ModeDescription,,色恒常は各色を独立に補正し、彩度保持は輝度だけを補正します,Color constancy corrects each channel independently. Chromaticity corrects only the luminance,色恒常独立校正各通道。保持色度仅校正亮度,色恆常獨立校正各通道。保持色度僅校正亮度,색 항상성은 각 채널을 독립적으로 보정하고 채도 유지는 휘도만 보정합니다,Constancia de color corrige cada canal por separado. Cromaticidad corrige solo la luminancia,ثبات اللون يصحح كل قناة على حدة وحفظ اللون يصحح الإضاءة فقط,Konstansi warna mengoreksi tiap kanal secara terpisah. Kromatisitas hanya mengoreksi luminans
+ModeColorConstancy,,色恒常,Color constancy,色恒常,色恆常,색 항상성,Constancia de color,ثبات اللون,Konstansi warna
+ModeColorConstancyDescription,,各色を独立に補正し照明の色かぶりを除きます,Corrects each channel independently and removes illuminant color casts,独立校正各通道并去除照明色偏,獨立校正各通道並去除照明色偏,각 채널을 독립적으로 보정하여 조명의 색 쏠림을 제거합니다,Corrige cada canal por separado y elimina dominantes de color,يصحح كل قناة على حدة ويزيل غلبة لون الإضاءة,Mengoreksi tiap kanal secara terpisah dan menghapus dominasi warna cahaya
+ModeChromaticity,,彩度保持,Chromaticity,保持色度,保持色度,채도 유지,Cromaticidad,حفظ اللون,Kromatisitas
+ModeChromaticityDescription,,輝度だけを補正し元の色味を保ちます,Corrects only the luminance and preserves the original colors,仅校正亮度并保留原有色彩,僅校正亮度並保留原有色彩,휘도만 보정하여 원래 색감을 유지합니다,Corrige solo la luminancia y conserva los colores originales,يصحح الإضاءة فقط ويحافظ على الألوان الأصلية,Hanya mengoreksi luminans dan mempertahankan warna asli
+LocalScale,,局所スケール,Local scale,局部尺度,局部尺度,국소 스케일,Escala local,المقياس المحلي,Skala lokal
+LocalScaleDescription,,最小サラウンドの半径です。素材の長辺に対する割合で指定します,Radius of the narrowest surround as a ratio of the longer side of the source,最窄环绕的半径。以素材长边的比例指定,最窄環繞的半徑。以素材長邊的比例指定,가장 좁은 서라운드의 반경입니다. 소재 긴 변에 대한 비율로 지정합니다,Radio del entorno más estrecho como proporción del lado más largo de la fuente,نصف قطر أضيق محيط كنسبة من الضلع الأطول للمصدر,Radius surround tersempit sebagai rasio sisi terpanjang sumber
+GlobalScale,,広域スケール,Global scale,全局尺度,全局尺度,광역 스케일,Escala global,المقياس الواسع,Skala global
+GlobalScaleDescription,,最大サラウンドの半径です。素材の長辺に対する割合で指定します,Radius of the widest surround as a ratio of the longer side of the source,最宽环绕的半径。以素材长边的比例指定,最寬環繞的半徑。以素材長邊的比例指定,가장 넓은 서라운드의 반경입니다. 소재 긴 변에 대한 비율로 지정합니다,Radio del entorno más ancho como proporción del lado más largo de la fuente,نصف قطر أوسع محيط كنسبة من الضلع الأطول للمصدر,Radius surround terluas sebagai rasio sisi terpanjang sumber
+Contrast,,ダイナミックレンジ,Dynamic range,动态范围,動態範圍,다이내믹 레인지,Rango dinámico,المدى الديناميكي,Rentang dinamis
+ContrastDescription,,反射成分を表示範囲へ広げる強さです,Strength of stretching the reflectance onto the display range,将反射分量扩展到显示范围的强度,將反射分量擴展到顯示範圍的強度,반사 성분을 표시 범위로 펼치는 강도입니다,Intensidad con que la reflectancia se extiende al rango visible,قوة مدّ مكوّن الانعكاس إلى نطاق العرض,Kekuatan merentangkan komponen reflektansi ke rentang tampilan
+Brightness,,明るさ,Brightness,亮度,亮度,밝기,Brillo,السطوع,Kecerahan
+BrightnessDescription,,出力全体の明るさの補正です,Brightness offset of the output,输出整体亮度的校正,輸出整體亮度的校正,출력 전체의 밝기 보정입니다,Corrección de brillo de la salida,تعديل سطوع الناتج بأكمله,Koreksi kecerahan keseluruhan keluaran
+ColorRestoration,,色再現,Color restoration,色彩还原,色彩還原,색 재현,Restauración de color,استعادة اللون,Restorasi warna
+ColorRestorationDescription,,色再現係数の強さです。低いほど色が灰色に近づきます,Strength of the color restoration factor. Lower values turn colors gray,色彩还原系数的强度。数值越低颜色越接近灰色,色彩還原係數的強度。數值越低顏色越接近灰色,색 재현 계수의 강도입니다. 낮을수록 색이 회색에 가까워집니다,Intensidad del factor de restauración de color. Valores bajos vuelven grises los colores,قوة معامل استعادة اللون. القيم المنخفضة تجعل الألوان رمادية,Kekuatan faktor restorasi warna. Nilai rendah membuat warna keabu-abuan
+QualityBalanced,,標準,Balanced,标准,標準,표준,Estándar,قياسي,Standar
+QualityBalancedDescription,,スケール数とサラウンド精度を抑えた設定です,Uses reduced scale counts and surround precision,降低尺度数与环绕精度的设置,降低尺度數與環繞精度的設定,스케일 수와 서라운드 정밀도를 줄인 설정입니다,Configuración con menos escalas y menor precisión del entorno,إعداد بعدد مقاييس ودقة محيط مخفضين,Pengaturan dengan jumlah skala dan presisi surround yang dikurangi
+QualityHigh,,高品質,High,高品质,高品質,고품질,Alta,عالية,Tinggi
+QualityHighDescription,,品質と処理量の基準設定です,The reference balance of quality and cost,品质与处理量的基准设置,品質與處理量的基準設定,품질과 처리량의 기준 설정입니다,Configuración de referencia entre calidad y coste,الإعداد المرجعي للتوازن بين الجودة والتكلفة,Pengaturan acuan antara kualitas dan beban proses
+QualityUltra,,最高品質,Ultra,最高品质,最高品質,최고 품질,Máxima,قصوى,Ultra
+QualityUltraDescription,,最多のスケール数と最高のサラウンド精度を使用します,Uses the largest scale counts and the finest surround precision,使用最多的尺度数与最高的环绕精度,使用最多的尺度數與最高的環繞精度,최다 스케일 수와 최고의 서라운드 정밀도를 사용합니다,Usa el mayor número de escalas y la mayor precisión del entorno,يستخدم أكبر عدد من المقاييس وأعلى دقة للمحيط,Menggunakan jumlah skala terbanyak dan presisi surround tertinggi
+TagBacklight,,逆光,Backlight,逆光,逆光,역광,Contraluz,الإضاءة الخلفية,Cahaya latar
+TagHaze,,霞,Haze,雾霭,霧靄,안개,Bruma,الضباب,Kabut
+TagColorConstancy,,色恒常,Color constancy,色恒常,色恆常,색 항상성,Constancia de color,ثبات اللون,Konstansi warna
+UpdateAvailableMessage,,新しいバージョン {0} が公開されています。,A new version {0} is available.,新版本 {0} 已发布。,新版本 {0} 已發布。,새 버전 {0}이(가) 공개되었습니다.,La nueva versión {0} ya está disponible.,تم إصدار نسخة جديدة {0}.,Versi baru {0} telah dirilis.
