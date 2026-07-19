@@ -64,10 +64,18 @@ foreach (var quality in new[] { MultiscaleRetinexQuality.Balanced, MultiscaleRet
     var parameters = new MultiscaleRetinexPipeline.Parameters(MultiscaleRetinexQuality.High, MultiscaleRetinexMode.ColorConstancy, 0.03f, 0.49f, 0.3f, 0f, 1f);
 
     pipeline.Simulate(sourceTexture, width, height, in parameters);
-    var stopwatch = Stopwatch.StartNew();
-    pipeline.Simulate(sourceTexture, width, height, parameters with { GlobalScale = 0.5f });
-    stopwatch.Stop();
-    Console.WriteLine($"structure recompute: {stopwatch.Elapsed.TotalMilliseconds:F2} ms");
+    var stopwatch = new Stopwatch();
+    var best = double.MaxValue;
+    for (var iteration = 0; iteration < 12; iteration++)
+    {
+        var alternated = parameters with { GlobalScale = iteration % 2 == 0 ? 0.5f : 0.51f };
+        stopwatch.Restart();
+        pipeline.Simulate(sourceTexture, width, height, in alternated);
+        pipeline.WaitForCompletion();
+        stopwatch.Stop();
+        best = Math.Min(best, stopwatch.Elapsed.TotalMilliseconds);
+    }
+    Console.WriteLine($"structure recompute: {best:F2} ms");
 
     stopwatch.Restart();
     const int hitFrames = 200;
