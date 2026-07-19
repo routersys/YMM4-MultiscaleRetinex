@@ -257,27 +257,6 @@ internal readonly partial struct BlurVerticalShader(
 
 [ThreadGroupSize(DefaultThreadGroupSizes.XY)]
 [GeneratedComputeShaderDescriptor]
-internal readonly partial struct ClearRetinexShader(
-    ReadWriteBuffer<Float3> retinex,
-    int width,
-    int height) : IComputeShader
-{
-    private readonly ReadWriteBuffer<Float3> retinex = retinex;
-    private readonly int width = width;
-    private readonly int height = height;
-
-    public void Execute()
-    {
-        var x = ThreadIds.X;
-        var y = ThreadIds.Y;
-        if (x >= width || y >= height)
-            return;
-        retinex[y * width + x] = new Float3(0f, 0f, 0f);
-    }
-}
-
-[ThreadGroupSize(DefaultThreadGroupSizes.XY)]
-[GeneratedComputeShaderDescriptor]
 internal readonly partial struct AccumulateRetinexShader(
     ReadWriteTexture2D<Bgra32, Float4> source,
     ReadWriteBuffer<Float4> surround,
@@ -288,7 +267,8 @@ internal readonly partial struct AccumulateRetinexShader(
     int levelHeight,
     float levelScale,
     float weight,
-    int mode) : IComputeShader
+    int mode,
+    int initialize) : IComputeShader
 {
     private readonly ReadWriteTexture2D<Bgra32, Float4> source = source;
     private readonly ReadWriteBuffer<Float4> surround = surround;
@@ -300,6 +280,7 @@ internal readonly partial struct AccumulateRetinexShader(
     private readonly float levelScale = levelScale;
     private readonly float weight = weight;
     private readonly int mode = mode;
+    private readonly int initialize = initialize;
 
     public void Execute()
     {
@@ -313,26 +294,34 @@ internal readonly partial struct AccumulateRetinexShader(
         if (alpha <= 0f)
             return;
 
-        var lx = (x + 0.5f) / levelScale - 0.5f;
-        var ly = (y + 0.5f) / levelScale - 0.5f;
-        var ix0 = (int)Hlsl.Floor(lx);
-        var iy0 = (int)Hlsl.Floor(ly);
-        var fx = lx - ix0;
-        var fy = ly - iy0;
-        var cx0 = Hlsl.Clamp(ix0, 0, levelWidth - 1);
-        var cx1 = Hlsl.Clamp(ix0 + 1, 0, levelWidth - 1);
-        var cy0 = Hlsl.Clamp(iy0, 0, levelHeight - 1);
-        var cy1 = Hlsl.Clamp(iy0 + 1, 0, levelHeight - 1);
-        var top = Hlsl.Lerp(surround[cy0 * levelWidth + cx0], surround[cy0 * levelWidth + cx1], fx);
-        var bottom = Hlsl.Lerp(surround[cy1 * levelWidth + cx0], surround[cy1 * levelWidth + cx1], fx);
-        var blurred = Hlsl.Lerp(top, bottom, fy);
+        Float4 blurred;
+        if (levelScale == 1f)
+        {
+            blurred = surround[y * levelWidth + x];
+        }
+        else
+        {
+            var lx = (x + 0.5f) / levelScale - 0.5f;
+            var ly = (y + 0.5f) / levelScale - 0.5f;
+            var ix0 = (int)Hlsl.Floor(lx);
+            var iy0 = (int)Hlsl.Floor(ly);
+            var fx = lx - ix0;
+            var fy = ly - iy0;
+            var cx0 = Hlsl.Clamp(ix0, 0, levelWidth - 1);
+            var cx1 = Hlsl.Clamp(ix0 + 1, 0, levelWidth - 1);
+            var cy0 = Hlsl.Clamp(iy0, 0, levelHeight - 1);
+            var cy1 = Hlsl.Clamp(iy0 + 1, 0, levelHeight - 1);
+            var top = Hlsl.Lerp(surround[cy0 * levelWidth + cx0], surround[cy0 * levelWidth + cx1], fx);
+            var bottom = Hlsl.Lerp(surround[cy1 * levelWidth + cx0], surround[cy1 * levelWidth + cx1], fx);
+            blurred = Hlsl.Lerp(top, bottom, fy);
+        }
         var coverage = Hlsl.Max(blurred.W, MultiscaleRetinexSettings.LogEpsilon * MultiscaleRetinexSettings.LogEpsilon);
 
         var r = Hlsl.Saturate(pixel.X / alpha);
         var g = Hlsl.Saturate(pixel.Y / alpha);
         var b = Hlsl.Saturate(pixel.Z / alpha);
         var index = y * width + x;
-        var accumulated = retinex[index];
+        var accumulated = initialize != 0 ? new Float3(0f, 0f, 0f) : retinex[index];
         if (mode == 0)
         {
             var surroundR = Hlsl.Saturate(blurred.X / coverage);

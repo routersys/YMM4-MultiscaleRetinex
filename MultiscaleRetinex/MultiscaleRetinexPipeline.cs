@@ -218,9 +218,6 @@ internal sealed class MultiscaleRetinexPipeline : IDisposable
             context.Barrier(pyramid);
         }
 
-        context.For(width, height, new ClearRetinexShader(retinex, width, height));
-        context.Barrier(retinex);
-
         var weight = 1f / derived.ScaleCount;
         for (var scale = 0; scale < derived.ScaleCount; scale++)
         {
@@ -237,7 +234,7 @@ internal sealed class MultiscaleRetinexPipeline : IDisposable
             context.Barrier(surround);
             context.For(width, height, new AccumulateRetinexShader(
                 source, surround, retinex, width, height,
-                _levelWidths[level], _levelHeights[level], 1 << level, weight, derived.Mode));
+                _levelWidths[level], _levelHeights[level], 1 << level, weight, derived.Mode, scale == 0 ? 1 : 0));
             context.Barrier(retinex);
         }
     }
