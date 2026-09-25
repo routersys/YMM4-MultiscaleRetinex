@@ -1,10 +1,8 @@
 using YukkuriMovieMaker.Generator;
 
-namespace MultiscaleRetinex
-{
-    [AutoGenLocalizer]
-    partial class Texts
-    {
+namespace MultiscaleRetinex;
 
-    }
+[AutoGenLocalizer]
+partial class Texts
+{
 }
